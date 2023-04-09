@@ -16,7 +16,7 @@
 <p>{{blog.content}}</p>
 
 {% if blog.image %}
-<img src="{{blog.image.url}}" alt="이미지" />
+<img src="{{blog.image.url}}" alt="이미지" width="100"/>
 {% endif %}
 
 <p>{{blog.created_at}}</p>
@@ -25,6 +25,9 @@
 <a href="{% url 'edit' blog.id %}">수정하기</a>
 <a href="{% url 'delete' blog.id %}">삭제하기</a>
 <a href="{% url 'new_comment' blog.id %}">댓글 달기</a>
+<a href="{% url 'like' blog.id %}">👍</a>
+<span>좋아요 개수:{{likes}}</span>
+
 
 {% for comment in comments %}
 <hr />

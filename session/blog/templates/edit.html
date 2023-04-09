@@ -1,10 +1,18 @@
 <h1>edit 페이지</h1>
 
+
+
 <form method="POST" action="{% url 'update' edit_blog.id %}" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="text" name="title" value="{{edit_blog.title}}" />
     <textarea name="content" id="" cols="30">{{edit_blog.content}}</textarea>
-    <input type="file" name="image" />
+    <input type="file" name="image" value="{{edit_blog.image}}" />
+    <label for="tags">Tags:</label>
+    <select name="tags" id="tags" multiple>
+        {% for tag in tags %}
+        <option value="{{ tag.id }}" {% if tag.name == edit_blog.tag.name %} checked {% endif %}>{{ tag.name }}</option>
+        {% endfor %}
+    </select>
     <input type="submit" value="수정하기" />
 </form>
 
