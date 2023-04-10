@@ -82,6 +82,7 @@ def new_comment(request, blog_id):
     # 로그인하지 않았다면 댓글 입력창 못 가고 로그인하기로 이동
     if request.user.is_anonymous:
         return redirect('singin')
+    # 로그인했다면
     blog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'new_comment.html', {'blog': blog})
 
@@ -101,9 +102,9 @@ def like(request, blog_id):
     # 로그인하지 않았다면 좋아요 못 누르고 로그인하기로 이동
         return redirect('login')
     if Like.objects.filter(likedUser=request.user, blog_id=blog_id):
-    # "현재 로그인한 사용자"가 "해당 글"에 Like 객체를 만들었다면
+    # "현재 로그인한 사용자"가 "해당 글"에 Like 객체를 만든 것이 존재한다면
         return redirect('detail', blog_id)
-    # "현재 로그인한 사용자"가 "해당 글"에 Like 객체를 만들지 않았다면
+    # "현재 로그인한 사용자"가 "해당 글"에 Like 객체를 만든 것이 존재하지 않다면
     like = Like()
     like.blog = get_object_or_404(Blog, pk=blog_id)
     like.likedUser = request.user

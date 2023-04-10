@@ -5,7 +5,7 @@ from django.db import models
 # 커스텀하기 위해 UserManager을 사용하지 않고 BaseUserManager 사용
 class CustomUserManager(BaseUserManager):
     # 필수 (Docs참고, Customizing authentication in Django)
-    def create_user(self, username, password, **kwargs):
+    def create_user(self, username, password, **kwargs):  # username, password, 기타(dict형)을 파라미터로 받음
         user = self.model(username=username, **kwargs)
         user.set_password(password)
         user.save()
