@@ -100,7 +100,7 @@ def create_comment(request, blog_id):
 def like(request, blog_id):
     if request.user.is_anonymous:
     # 로그인하지 않았다면 좋아요 못 누르고 로그인하기로 이동
-        return redirect('login')
+        return redirect('users:signin')
     if Like.objects.filter(likedUser=request.user, blog_id=blog_id):
     # "현재 로그인한 사용자"가 "해당 글"에 Like 객체를 만든 것이 존재한다면
         return redirect('detail', blog_id)

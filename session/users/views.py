@@ -2,8 +2,6 @@
 # from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect, get_object_or_404
-
-
 from .forms import CustomUserSignupForm, CustomUserSigninForm
 from .models import CustomUser, Profile
 
